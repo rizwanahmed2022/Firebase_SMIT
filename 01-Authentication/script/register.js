@@ -1,0 +1,27 @@
+import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+import { auth } from "./firebaseconfig.js";
+
+
+const form = document.querySelector("#form");
+const email = document.querySelector("#email");
+const password = document.querySelector("#password");
+const google = document.querySelector("#google");
+
+
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  createUserWithEmailAndPassword(auth, email.value, password.value)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      console.log(user.userCredential);
+      window.location = "login.html"
+
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorMessage);
+      // ..
+    });
+});
