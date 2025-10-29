@@ -3,11 +3,9 @@ import {
   sendPasswordResetEmail,
   signOut,
   signInWithPopup
+  
 } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
-import { auth, provider } from "./firebaseconfig.js";
-
-
-
+import { auth,provider } from "./firebaseconfig.js";
 
 
 
@@ -16,9 +14,33 @@ import { auth, provider } from "./firebaseconfig.js";
 const form = document.querySelector("#form");
 const email = document.querySelector("#email");
 const password = document.querySelector("#password");
-const google = document.querySelector("#google");
 const register = document.querySelector("#register");
 const forgotBtn = document.querySelector("#forgotBtn");
+const google = document.querySelector("#google");
+
+
+
+google.addEventListener('click', ()=>{
+signInWithPopup(auth, provider)
+  .then((result) => {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    // The signed-in user info.
+    const user = result.user;
+    console.log(user)
+    // IdP data available using getAdditionalUserInfo(result)
+    // ...
+  }).catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorMessage)
+  });
+
+
+})
+
 
 
 
@@ -56,6 +78,9 @@ forgotBtn.addEventListener("click", () => {
 });
 
 
+
+
+
 google.addEventListener('click', ()=>{
 
   signInWithPopup(auth, provider)
@@ -68,6 +93,10 @@ google.addEventListener('click', ()=>{
     console.log(user)
     // IdP data available using getAdditionalUserInfo(result)
     // ...
+
+
+
+
   }).catch((error) => {
     // Handle Errors here.
     const errorCode = error.code;

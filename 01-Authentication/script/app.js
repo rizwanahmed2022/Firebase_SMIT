@@ -11,8 +11,7 @@ onAuthStateChanged(auth, (user) => {
     console.log(uid)
     // ...
   } else {
-    // User is signed out
-    // ...
+    window.location = 'login.html'
   }
 });
 

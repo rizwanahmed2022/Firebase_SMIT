@@ -1,12 +1,9 @@
 import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
 import { auth } from "./firebaseconfig.js";
 
-
 const form = document.querySelector("#form");
 const email = document.querySelector("#email");
 const password = document.querySelector("#password");
-const google = document.querySelector("#google");
-
 
 
 form.addEventListener("submit", (event) => {
@@ -25,3 +22,5 @@ form.addEventListener("submit", (event) => {
       // ..
     });
 });
+
+
